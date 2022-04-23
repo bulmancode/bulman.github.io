@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<!-- enctype="application/x-www-form-urlencoded" 默认有三种提交数据的方式
+        enctype="application/x-www-form-urlencoded" 采用 key-value的方式提交   后台  value = getparameter（key）
+
+        一旦 表单中存在 file控件  上传的是文件  如果我们单纯的继续使用 key-value去提交数据 后台 value = getparameter（key）
+        接收file的数据 只能取到文件名  (要的是文件  二进制流  I/O)
+
+      enctype=multipart/form-data 整个表单将会改成 二进制流传输  所有的后台将无法使用 value = getparameter（key）
+      后台代码都将修改 （文件上传下载的时候就会讲）
+-->
+
+
+<form action="houtai.html" method="GET" enctype="multipart/form-data">
+    <!-- hidden 不方便显示 但是仍然后台可以接收数据-->
+    <input type="hidden" name="bgnk1" value="不想让你看见1"/>
+    <table border="1" width="500px" bgcolor="#ffffff" cellspacing="0">
+        <tr>
+            <td>姓名:</td>
+            <!-- readonly 只读  默认值 value -->
+            <!--属性
+            disabled 视觉上不可选中 不可更改文本框内容 服务器/后台不能通过name属性得到当前的值  ----  文本失效
+            disabled 可以用在 所有的按钮上 让按钮失效
+            readonly  可选中   不可更改文本框内容  服务器/后台 可以得到值-->
+            <td><input type="text" name="name" value="张三" disabled/></td>
+        </tr>
+
+        <tr>
+            <td>密码:</td>
+            <!-- maxlength 输入长度 -->
+            <td><input type="password" name="psd" maxlength="8"/></td>
+        </tr>
+        <tr>
+            <td>性别:</td>
+
+            <td>男:<input type="radio" value="男" name="sex" CHECKED="CHECKED"/>
+                女:<input type="radio" value="女" name="sex"/>
+            </td>
+        </tr>
+        <!-- radio和checkbox name必须一样否则后台无法接值-->
+        <tr>
+            <td>爱好:</td>
+            <!-- 提交数据是以数组形式接收的-->
+            <td>游泳:<input type="checkbox" value="游泳" name="aiHao"/>
+                健身:<input type="checkbox" value="健身" name="aiHao"/>
+                篮球:<input type="checkbox" value="篮球" name="aiHao"/>
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>专业:</td>
+            <td>
+                <!-- multiple 多选-->
+                <select name="zy" multiple>
+                    <option value="计算机科学与技术">计算机科学与技术</option>
+                    <option value="大数据" selected>大数据</option>
+                    <option value="软件工程">软件工程</option>
+                </select>
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>头像:</td>
+            <!-- 图片 文件选择器  form 直接能使用的控件-->
+            <td>
+                <!-- 文件使用二进制流  普通的表单 key-value的形式传递数据的-->
+                <!--
+
+                    一旦加入了file控件需要改变整个表单的数据提交格式
+                    一旦修改了 file能接收了  其他控件接收不了了
+                -->
+                <input type="file" name="file"/>
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>自我介绍:</td>
+            <!-- 文本域-->
+            <td>
+                <!-- 没有宽度和高度 rows cols-->
+                <textarea rows="10" cols="30" name="zwjs"> 我觉得很好看。。。。。。</textarea>
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>不方便显示的:</td>
+            <!-- 隐藏域   看不见但是可以传值 可以用来隐藏传值 value必须写上-->
+            <td>
+                <input type="hidden" name="bgnk" value="不想让你看见"/>
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>提交按钮带图片的</td>
+            <!--图片显示的按钮 能和sumbit一样可以提交整个表单-->
+            <td>
+                <input type="image" src="dl.png"/>
+            </td>
+
+        </tr>
+        <tr>
+            <td>普通按钮</td>
+            <!--
+
+                就是一个按钮但是不能提交表单 将来可以用来和js交互做动态效果
+                将来我们可以通过 js控制disabled 动态的设置按钮是否可用
+
+            -->
+            <td>
+                <input type="button" value="按钮"/> <input type="button" value="按钮" disabled/>
+            </td>
+
+        </tr>
+        <tr>
+            <td><input type="submit" value="确定"/></td>
+            <td><input type="reset" value="重置"/></td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>
